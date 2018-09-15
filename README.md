@@ -25,7 +25,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-## Simple Countdown Timer
+<!-- ## Simple Countdown Timer
 
 Simple Countdown Timer
 
@@ -44,5 +44,5 @@ Calculate the number of seconds difference between start time and end time, and 
 Start decreasing the output by one for every second (behave like a countdown timer)
 5. All inputs, output, and button should be rendered in ReactJS.
 6. While it is a simple project, please submit a polished work so we could assess your design sense. 
-7. Please use Redux for button action and state transition. 
+7. Please use Redux for button action and state transition.  -->
 
