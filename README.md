@@ -29,7 +29,10 @@ Your app is ready to be deployed!
 
 ### `npm run prod`
 
-Run the production version. Before you run this command, please run the `npm run build` first.
+Runs the app in the production mode.
+Open http://localhost:5000 to view it in the browser.
+
+Before you run this command, please run the `npm run build` first.
 
 ### `Design`
 
