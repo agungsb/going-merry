@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FlipTiles from './FlipTiles';
 
 class FlipCard extends React.Component {
   static propTypes = {
@@ -37,58 +38,8 @@ class FlipCard extends React.Component {
     return (
       <React.Fragment>
         <span className={`flip-clock-divider ${type}`}><span className="flip-clock-label">Seconds</span></span>
-        <ul className={`flip${play ? ' play' : ''}`}>
-          <li className="flip-clock-before">
-            <a href="" onClick={event => event.preventDefault()}>
-              <div className="up">
-                <div className="shadow" />
-                <div className="inn">{before[0]}</div>
-              </div>
-              <div className="down">
-                <div className="shadow" />
-                <div className="inn">{before[0]}</div>
-              </div>
-            </a>
-          </li>
-          <li className="flip-clock-active">
-            <a href="" onClick={event => event.preventDefault()}>
-              <div className="up">
-                <div className="shadow" />
-                <div className="inn">{active[0]}</div>
-              </div>
-              <div className="down">
-                <div className="shadow" />
-                <div className="inn">{active[0]}</div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <ul className={`flip${play ? ' play' : ''}`}>
-          <li className={`flip-clock-before`}>
-            <a href="" onClick={event => event.preventDefault()}>
-              <div className="up">
-                <div className="shadow" />
-                <div className="inn">{before[1]}</div>
-              </div>
-              <div className="down">
-                <div className="shadow" />
-                <div className="inn">{before[1]}</div>
-              </div>
-            </a>
-          </li>
-          <li className={`flip-clock-active`}>
-            <a href="" onClick={event => event.preventDefault()}>
-              <div className="up">
-                <div className="shadow" />
-                <div className="inn">{active[1]}</div>
-              </div>
-              <div className="down">
-                <div className="shadow" />
-                <div className="inn">{active[1]}</div>
-              </div>
-            </a>
-          </li>
-        </ul>
+        <FlipTiles play={play} before={before[0]} active={active[0]} />
+        <FlipTiles play={play} before={before[1]} active={active[1]} />
       </React.Fragment>
     );
   }

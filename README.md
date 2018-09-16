@@ -25,6 +25,14 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
+### `npm run prod`
+
+Run the production version. Before you run this command, please run the `npm run build` first.
+
+### `Design`
+
+Design is taken from [https://colorlib.com/etc/cs/comingsoon_15/index.html](https://colorlib.com/etc/cs/comingsoon_15/index.html) without commercial purpose.
+
 <!-- ## Simple Countdown Timer
 
 Simple Countdown Timer

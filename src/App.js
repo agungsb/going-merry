@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import Countdown from './components/Countdown';
 import FlipClock from './components/FlipClock';
 import Form from './components/Form';
 
@@ -19,7 +18,6 @@ class App extends Component {
         <div className="flex-col-c p-t-160 p-b-215 respon1">
           <div className="wrappic1">
             <Form />
-            {/* <Countdown /> */}
             <FlipClock
               time={output}
               key={timestamp}

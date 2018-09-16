@@ -6,15 +6,17 @@ import FlipCard from './FlipCard';
 let interval;
 let timeout;
 
-class FlipClock extends React.PureComponent {
+class FlipClock extends React.Component {
   static propTypes = {
     time: PropTypes.number.isRequired,
   }
   static getDerivedStateFromProps(props, state) {
-    if (props.time > 0 && props.time !== state.initialTime) {
-      return {
-        previousTime: state.initialTime,
-        initialTime: props.time,
+    if (props.time > 0) {
+      if (props.time !== state.initialTime) {
+        return {
+          previousTime: state.initialTime,
+          initialTime: props.time,
+        }
       }
     }
     return null;
@@ -41,12 +43,6 @@ class FlipClock extends React.PureComponent {
   componentWillUnmount() {
     clearInterval(interval);
   }
-  reset = () => {
-    timeout = setTimeout(() => {
-      clearTimeout(timeout);
-      this.setState({ play: false });
-    }, 800);
-  }
   countdown = () => {
     interval = setInterval(() => {
       if (this.state.time > 0) {
@@ -59,6 +55,12 @@ class FlipClock extends React.PureComponent {
         clearInterval(interval);
       }
     }, 1000);
+  }
+  reset = () => {
+    timeout = setTimeout(() => {
+      clearTimeout(timeout);
+      this.setState({ play: false });
+    }, 800);
   }
   render() {
     const {
@@ -73,9 +75,9 @@ class FlipClock extends React.PureComponent {
     } = secondsToHms(time);
     return (
       <div className="flip-clock-wrapper">
-        <FlipCard value={days} type="days" />
-        <FlipCard value={hours} type="hours" />
-        <FlipCard value={minutes} type="minutes" />
+        <FlipCard value={days} type="days" play={play} />
+        <FlipCard value={hours} type="hours" play={play} />
+        <FlipCard value={minutes} type="minutes" play={play} />
         <FlipCard value={seconds} type="seconds" play={play} />
       </div>
     );
