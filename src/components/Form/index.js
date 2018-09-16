@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { omit } from 'lodash';
 import {
   Button,
   FormGroup,
@@ -18,42 +19,44 @@ class Form extends React.PureComponent {
     error: {},
   }
 
-  setTimeStart = (time) => {
+  setTimeStart = (time, valid) => {
     let { error } = this.state;
-    const start = moment(time, 'HH:mm:ss');
-    if (start.isValid()) {
-      this.props.setTimeStart(start);
-      delete error.start;
-      delete error.submit;
+    const start = moment(time, 'HH:mm:ss', 'id');
+    this.props.setTimeStart(start);
+    if (time === '24:00:00') {
+      valid = false;
+    }
+    if (valid) {
       this.setState({
-        error,
+        error: omit(error, ['start', 'submit'])
       });
     } else {
-      delete error.submit;
       error = {
         ...error,
-        start: 'Input is invalid',
+        start: 'Start time is invalid',
       };
+      omit(error, ['submit'])
       this.setState({ error });
     }
   }
 
-  setTimeEnd = (time) => {
+  setTimeEnd = (time, valid) => {
     let { error } = this.state;
-    const end = moment(time, 'HH:mm:ss');
-    if (end.isValid()) {
-      this.props.setTimeEnd(end);
-      delete error.end;
-      delete error.submit;
+    const end = moment(time, 'HH:mm:ss', 'id');
+    this.props.setTimeEnd(end);
+    if (time === '24:00:00') {
+      valid = false;
+    }
+    if (valid) {
       this.setState({
-        error,
+        error: omit(error, ['end', 'submit'])
       });
     } else {
-      delete error.submit;
       error = {
         ...error,
-        end: 'Input is invalid',
+        end: 'End time is invalid',
       };
+      omit(error, ['submit'])
       this.setState({ error });
     }
   }

@@ -4,6 +4,7 @@ import { secondsToHms } from '../../utils';
 import FlipCard from './FlipCard';
 
 let interval;
+let timeout;
 
 class FlipClock extends React.PureComponent {
   static propTypes = {
@@ -21,6 +22,7 @@ class FlipClock extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      play: false,
       previousTime: props.time,
       initialTime: props.time,
       time: props.time,
@@ -39,10 +41,20 @@ class FlipClock extends React.PureComponent {
   componentWillUnmount() {
     clearInterval(interval);
   }
+  reset = () => {
+    timeout = setTimeout(() => {
+      clearTimeout(timeout);
+      this.setState({ play: false });
+    }, 800);
+  }
   countdown = () => {
     interval = setInterval(() => {
       if (this.state.time > 0) {
-        this.setState({ time: this.state.time - 1 });
+        this.reset();
+        this.setState({
+          time: this.state.time - 1,
+          play: true
+        });
       } else {
         clearInterval(interval);
       }
@@ -50,17 +62,21 @@ class FlipClock extends React.PureComponent {
   }
   render() {
     const {
+      play,
+      time
+    } = this.state;
+    const {
       days,
       hours,
       minutes,
       seconds,
-    } = secondsToHms(this.state.time);
+    } = secondsToHms(time);
     return (
       <div className="flip-clock-wrapper">
         <FlipCard value={days} type="days" />
         <FlipCard value={hours} type="hours" />
         <FlipCard value={minutes} type="minutes" />
-        <FlipCard value={seconds} type="seconds" />
+        <FlipCard value={seconds} type="seconds" play={play} />
       </div>
     );
   }

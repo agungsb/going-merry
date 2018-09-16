@@ -6,9 +6,6 @@ import {
 } from './../actions';
 
 const initialState = {
-  // end: moment('12:40:00', 'HH:mm:ss'),
-  // output: 600,
-  // start: moment('12:50:00', 'HH:mm:ss'),
   end: null,
   output: 0,
   start: null,

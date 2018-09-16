@@ -6,10 +6,12 @@ class FormInput extends React.PureComponent {
   static propTypes = {
     onChangeText: PropTypes.func.isRequired,
   }
+  onChangeText = (time) => {
+    const { onChangeText } = this.props;
+    const valid = this._input.isValid();
+    onChangeText(time, valid);
+  }
   render() {
-    const {
-      onChangeText,
-    } = this.props;
     return (
       <TextInputMask
         ref={ref => this._input = ref}
@@ -19,7 +21,7 @@ class FormInput extends React.PureComponent {
           format: 'HH:mm:ss'
         }}
         className="form-control"
-        onChangeText={onChangeText} />
+        onChangeText={this.onChangeText} />
     );
   }
 }
